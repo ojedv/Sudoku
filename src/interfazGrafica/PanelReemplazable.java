@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 
 public interface PanelReemplazable {
 
-
     // Cambia el panel actual por otro.
-
-    boolean cambiarPanel(String nombrePanel);
+    boolean cambiarPanel(JPanel panel);
 }
