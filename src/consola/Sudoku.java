@@ -62,7 +62,16 @@ public class Sudoku {
     // Rellena un número de celdas según dificultad con números de la solución
     public void rellenarDesdeSolucion(String dificultad, SudokuResuelto solucion) {
         int celdasARellenar;
-        switch (dificultad.toLowerCase()) {
+
+        // Normalizar la dificultad: quitar acentos y pasar a minúsculas
+        String dificultadNormalizada = dificultad.toLowerCase()
+                .replace("á", "a")
+                .replace("é", "e")
+                .replace("í", "i")
+                .replace("ó", "o")
+                .replace("ú", "u");
+
+        switch (dificultadNormalizada) {
             case "facil":
                 celdasARellenar = 51;
                 break;
@@ -73,7 +82,7 @@ public class Sudoku {
                 celdasARellenar = 31;
                 break;
             default:
-                System.out.println("Dificultad no válida. Se usará dificultad media.");
+                System.out.println("Dificultad no válida: '" + dificultad + "'. Se usará dificultad media.");
                 celdasARellenar = 41;
                 break;
         }
