@@ -1,3 +1,5 @@
+package consola;
+
 public class puntoMatriz {
     private int x;
     private int y;
