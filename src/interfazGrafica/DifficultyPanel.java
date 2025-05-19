@@ -25,9 +25,10 @@ public class DifficultyPanel extends JPanel {
         subtitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         subtitleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
-        JButton easyButton = createDifficultyButton("Fácil");
-        JButton mediumButton = createDifficultyButton("Medio");
-        JButton hardButton = createDifficultyButton("Difícil");
+        // Usar los valores exactos esperados por el método rellenarDesdeSolucion
+        JButton easyButton = createDifficultyButton("Fácil", "facil");
+        JButton mediumButton = createDifficultyButton("Medio", "medio");
+        JButton hardButton = createDifficultyButton("Difícil", "dificil");
 
         add(Box.createVerticalGlue());
         add(titleLabel);
@@ -42,15 +43,16 @@ public class DifficultyPanel extends JPanel {
         add(Box.createVerticalGlue());
     }
 
-    private JButton createDifficultyButton(String difficulty) {
-        JButton button = new JButton(difficulty);
+    private JButton createDifficultyButton(String buttonText, String difficulty) {
+        JButton button = new JButton(buttonText);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setMaximumSize(new Dimension(200, 50));
         button.setFont(new Font("Arial", Font.PLAIN, 16));
         button.setFocusPainted(false);
 
         button.addActionListener(e -> {
-            mainFrame.startGame(difficulty.toLowerCase());
+            // Iniciar el juego con la dificultad seleccionada
+            mainFrame.startGame(difficulty);
         });
 
         return button;

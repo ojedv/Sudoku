@@ -102,10 +102,11 @@ public class GamePanel extends JPanel {
         }
 
         // Actualizar también el modelo de datos
-        sudokuUsuario = new Sudoku();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                sudokuUsuario.rellenarNumSudoku(new puntoMatriz(i, j), solutionGrid[i][j]);
+                if (sudokuUsuario.getSudokuUsuario()[i][j] == 0) {
+                    sudokuUsuario.rellenarNumSudoku(new puntoMatriz(i, j), solutionGrid[i][j]);
+                }
             }
         }
     }
