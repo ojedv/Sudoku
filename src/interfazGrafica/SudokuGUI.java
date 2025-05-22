@@ -4,7 +4,7 @@ import consola.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class SudokuGUI extends JFrame implements PanelReemplazable {
+public class SudokuGUI extends JFrame implements PanelReemplazable, IControladorJuego {
     private JPanel mainPanel; // Panel principal que contendrá los diferentes paneles
     private Sudoku sudokuUsuario;
     private SudokuResuelto sudokuSolucion;

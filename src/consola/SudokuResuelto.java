@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SudokuResuelto {
+public class SudokuResuelto implements ISudokuResuelto{
     private int[][] sudoku = new int[9][9];
 
     public SudokuResuelto() {

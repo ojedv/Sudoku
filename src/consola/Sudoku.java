@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Sudoku {
+public class Sudoku implements ISudoku{
     private int[][] sudoku = new int[9][9];
+    private IValidadorSudoku validador;
+
 
     public Sudoku() {
+        this.validador = new ValidadorSudoku();
         // Inicializar todo a 0 (vacío)
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -21,9 +24,8 @@ public class Sudoku {
     }
 
     // Método para comprobar si el número es correcto según la solución dada
-    public boolean comprobarNumeroCorrecto(puntoMatriz xy, int valor, SudokuResuelto solucion) {
-        int[][] sudokuCorrecto = solucion.getSudoku();
-        return sudokuCorrecto[xy.getX()][xy.getY()] == valor;
+    public boolean comprobarNumeroCorrecto(puntoMatriz xy, int valor, ISudokuResuelto solucion) {
+        return validador.comprobarNumeroCorrecto(xy, valor, solucion);
     }
 
     // Devuelve la matriz con el estado actual del sudoku del usuario
@@ -31,36 +33,16 @@ public class Sudoku {
         return sudoku;
     }
 
+
+
     // Validar que el valor no esté repetido en fila, columna ni bloque 3x3
     public boolean validarNumSudoku(puntoMatriz xy, int valor) {
-        int x = xy.getX();
-        int y = xy.getY();
-
-        // Validar fila, ignorando la posición actual
-        for (int i = 0; i < 9; i++) {
-            if (i != y && sudoku[x][i] == valor) return false;
-        }
-
-        // Validar columna, ignorando la posición actual
-        for (int i = 0; i < 9; i++) {
-            if (i != x && sudoku[i][y] == valor) return false;
-        }
-
-        // Validar bloque 3x3, ignorando la posición actual
-        int startX = (x / 3) * 3;
-        int startY = (y / 3) * 3;
-        for (int i = startX; i < startX + 3; i++) {
-            for (int j = startY; j < startY + 3; j++) {
-                if ((i != x || j != y) && sudoku[i][j] == valor) return false;
-            }
-        }
-
-        return true;
+        return validador.validarNumSudoku(xy, valor, this.sudoku);
     }
 
-
     // Rellena un número de celdas según dificultad con números de la solución
-    public void rellenarDesdeSolucion(String dificultad, SudokuResuelto solucion) {
+    @Override
+    public void rellenarDesdeSolucion(String dificultad, ISudokuResuelto solucion) {
         int celdasARellenar;
 
         // Normalizar la dificultad: quitar acentos y pasar a minúsculas
