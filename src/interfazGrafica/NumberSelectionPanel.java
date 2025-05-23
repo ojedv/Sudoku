@@ -26,6 +26,18 @@ public class NumberSelectionPanel extends JPanel {
                 Window dialog = SwingUtilities.getWindowAncestor(numberButton);
                 dialog.dispose();
             });
+            numberButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    numberButton.setBackground(Color.LIGHT_GRAY);
+                }
+
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    numberButton.setBackground(null);
+                }
+            });
+
 
             add(numberButton);
         }
