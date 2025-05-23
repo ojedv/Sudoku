@@ -72,7 +72,7 @@ public class SudokuConsola {
         return numero;
     }
 
-    private boolean sudokuUsuarioCompleto() {
+    public boolean sudokuUsuarioCompleto() {
         int[][] grid = sudokuUsuario.getSudokuUsuario();
         for (int[] fila : grid) {
             for (int celda : fila) {

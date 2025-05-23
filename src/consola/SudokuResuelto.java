@@ -35,7 +35,7 @@ public class SudokuResuelto implements ISudokuResuelto{
         return sudoku;
     }
 
-    private boolean generarSudokuResuelto() {
+    public boolean generarSudokuResuelto() {
         return backtracking(0, 0);
     }
 
